@@ -16,11 +16,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showMessage (sender: UIButton) {
-        let alertController = UIAlertController(title: "Welcome to my first app", message: "Hello world", preferredStyle: UIAlertController.Style.alert)
+        let emojiDictionary = ["🤖":"Robot", "👻":"Ghost", "🤓":"Smiling Nerd", "👾":"Alien"]
         
-        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        //the sender is the button that is tapped by the user
+        //We store it in a constant
+        let selectButton = sender
         
-        present(alertController, animated: true, completion: nil)
+        //get the emoji from the title label of the selected button
+        if let wordToLookUp = selectButton.titleLabel?.text {
+            let meaning = emojiDictionary[wordToLookUp]
+            
+            let alertController = UIAlertController(title: "Emoji Meaning", message: meaning, preferredStyle: UIAlertController.Style.alert)
+            
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            
+            present(alertController, animated: true, completion: nil)
+        }
     }
 
 }
